@@ -1,0 +1,78 @@
+#ifndef REGDEFS_H_
+#define REGDEFS_H_
+
+#include "defs.h"
+#include <list>
+
+//#define DECLARE_REGISTER_AS_WORD 1
+#define RA_JA_AS_WORD	1
+#define REG_PRINT_PER_LINE 4
+//#define REG16_MASK 0x0000ffff
+
+//mips register name to index mapping
+#define INDEX_REG_ZERO 0
+#define INDEX_REG_AT	1
+#define INDEX_REG_V0	2
+#define INDEX_REG_V1	3
+#define INDEX_REG_A0	4
+#define INDEX_REG_A1	5
+#define INDEX_REG_A2	6
+#define INDEX_REG_A3	7
+#define INDEX_REG_T0	8
+#define INDEX_REG_T1	9
+#define INDEX_REG_T2	10
+#define INDEX_REG_T3	11
+#define INDEX_REG_T4	12
+#define INDEX_REG_T5	13
+#define INDEX_REG_T6	14
+#define INDEX_REG_T7	15
+#define INDEX_REG_S0	16
+#define INDEX_REG_S1	17
+#define INDEX_REG_S2	18
+#define INDEX_REG_S3	19
+#define INDEX_REG_S4	20
+#define INDEX_REG_S5	21
+#define INDEX_REG_S6	22
+#define INDEX_REG_S7	23
+#define INDEX_REG_T8	24
+#define INDEX_REG_T9	25
+#define INDEX_REG_K0	26
+#define INDEX_REG_K1	27	
+#define INDEX_REG_GP	28
+#define INDEX_REG_SP	29
+#define INDEX_REG_FP	30
+#define INDEX_REG_RA	31
+
+#define REG_GPR_SIZE 32
+
+#define REG_RA_SIZE 1
+#define REG_JA_SIZE 1
+#define REG_LOOP_SIZE 8
+#define REG_LOOP_CUR_SIZE 4
+#define REG_CTRL_SIZE (REG_RA_SIZE+REG_JA_SIZE)
+#define REG_ALL_CTRL_SIZE (REG_CTRL_SIZE+REG_LOOP_CUR_SIZE)
+
+#define EBASE_GPR 0
+	// core ctrl reg
+#define EBASE_CTRL (EBASE_GPR + REG_GPR_SIZE)
+#define EBASE_LOOP_CNT (EBASE_CTRL + REG_CTRL_SIZE)
+
+#define EBASE_CORE_REGS_LAST_INDEX (EBASE_LOOP_CNT + REG_LOOP_CUR_SIZE -1)
+#define EBASE_CORE_REGS_SIZE (EBASE_LOOP_CNT + REG_LOOP_CUR_SIZE)
+#define EBASE_FE_REGS_SIZE ((REG_LOOP_CUR_SIZE * 3) + 1)
+
+//#define REG_NAME_SIZE 12
+enum ECR_CTRL {
+	ECR_UNDEF = -1,
+	ECR_JA = 0,
+	ECR_RA = 1,
+	ECR_LOOP_CNT = 2,	
+	ECR_INSTR_CNT = ECR_LOOP_CNT + REG_LOOP_CUR_SIZE,	
+	ECR_MAX = ECR_INSTR_CNT + REG_LOOP_CUR_SIZE,
+};
+
+#define REG_RA_INDEX (EBASE_CTRL + ECR_RA)
+
+
+
+#endif /*REGDEFS_H_*/

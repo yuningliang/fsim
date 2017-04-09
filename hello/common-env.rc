@@ -1,0 +1,2 @@
+export TOOLROOT=/data/share/sl1-toolchain
+echo TOOLROOT is set to [$TOOLROOT]!
